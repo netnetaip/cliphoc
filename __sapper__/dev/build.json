@@ -1,0 +1,45 @@
+{
+  "bundler": "rollup",
+  "shimport": "1.0.1",
+  "assets": {
+    "main": "client.467fa050.js"
+  },
+  "dependencies": {
+    "../client.js": [],
+    "index.svelte": [
+      "client.467fa050.js"
+    ],
+    "locations/[uid].svelte": [
+      "client.467fa050.js",
+      "index.ff7bd4a9.js"
+    ],
+    "browse.svelte": [
+      "client.467fa050.js"
+    ],
+    "saved.svelte": [
+      "client.467fa050.js",
+      "index.ff7bd4a9.js"
+    ],
+    "../../node_modules/sapper/sapper-dev-client.js": []
+  },
+  "css": {
+    "main": "main.4248274102.css",
+    "chunks": {
+      "index.svelte": [
+        "client.467fa050.css"
+      ],
+      "locations/[uid].svelte": [
+        "[uid].b2ed78df.css",
+        "client.467fa050.css"
+      ],
+      "browse.svelte": [
+        "browse.5bb03e68.css",
+        "client.467fa050.css"
+      ],
+      "saved.svelte": [
+        "saved.510ab7a0.css",
+        "client.467fa050.css"
+      ]
+    }
+  }
+}
