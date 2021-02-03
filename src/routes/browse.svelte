@@ -149,8 +149,11 @@
 	dt, p {
 		font-size: .9rem;
 	}
-	dd {
+	dd, em {
 		font-size: .8rem;
+	}
+	em::before {
+		content: "#";
 	}
 </style>
 
@@ -164,10 +167,15 @@
 			{#each list as list (list.id)}
 				<a href="locations/{list.id}">
 					<article>
-						<h3>{list.title}</h3>
+						{#if list.type === "designer"}
+							<em style="color: var(--col-tert)">{list.type}</em>
+						{:else}
+							<em style="color: var(--col-seco)">{list.type}</em>
+						{/if}
+						<h2>{list.title}</h2>
 						<dl>
 							<dt>{list.author}</dt>
-							<dd>{list.city}, {list.country}</dd>
+							<dd>{list.city}</dd>
 						</dl>
 						<p>{list.brief}</p>
 					</article>

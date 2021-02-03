@@ -53,29 +53,35 @@
 	header {
 		padding: calc(var(--pt) * 3) calc(var(--pt) * 3) 0;
 	}
-	p {
-		padding: calc(var(--pt) * 3);
+	ul {
+		padding: var(--pt) calc(var(--pt) * 3);
+	}
+	li {
+		list-style-type: none;
 	}
 	svg {
         /* Sizing */
-		min-height: calc(var(--pt) * 2.5);
-		max-height: calc(var(--pt) * 2.5);
-		height: calc(var(--pt) * 2.5);
-		min-width: calc(var(--pt) * 2.5);
-		max-width: calc(var(--pt) * 2.5);
-        width: calc(var(--pt) * 2.5);
+		min-height: calc(var(--pt) * 2);
+		max-height: calc(var(--pt) * 2);
+		height: calc(var(--pt) * 2);
+		min-width: calc(var(--pt) * 2);
+		max-width: calc(var(--pt) * 2);
+        width: calc(var(--pt) * 2);
         /* Rest */
         stroke: var(--col-black);
-        stroke-width: 2;
+        stroke-width: 3;
 		fill: none;
 		margin-right: var(--pt);
 	}
 	/* Fonts */
-	dt, p, address {
+	dt, li, address {
 		font-size: 1rem;
 	}
-	dd {
+	dd, em {
 		font-size: .9rem;
+	}
+	em::before {
+		content: "#";
 	}
 </style>
 
@@ -84,49 +90,45 @@
 	<section>
 		<header>
 			{#if adhoc.type === "designer"}
-				<em style="color: var(--col-tert)">#{adhoc.type}</em>
+				<em style="color: var(--col-tert)">{adhoc.type}</em>
 			{:else}
-				<em style="color: var(--col-seco)">#{adhoc.type}</em>
+				<em style="color: var(--col-seco)">{adhoc.type}</em>
 			{/if}
-			<h2>{adhoc.title}</h2>
+			<h1>{adhoc.title}</h1>
 			<dl>
 				<dt>{adhoc.author}</dt>
-				<dd>{adhoc.city}, {adhoc.country}</dd>
+				<dd>{adhoc.city}</dd>
 			</dl>
 		</header>
-		<p>
-			Voluptate ea aliquip nisi consequat ipsum ipsum enim non Lorem.
-			Nulla ullamco ut nostrud Lorem quis officia dolore adipisicing.
-			Ex Lorem officia reprehenderit velit aute voluptate aliquip
-			exercitation in. Nulla anim ex amet do aliqua sunt laborum anim
-			ad. Cupidatat voluptate deserunt sint elit ipsum aliquip aliquip
-			excepteur. Elit irure sunt eu proident sit. Consectetur in
-			consectetur ex sint exercitation enim amet laboris nisi. Cillum
-			esse non ut id quis aliquip duis amet officia eu irure aliquip
-			sint quis. Magna voluptate dolor in esse aliqua esse adipisicing
-			commodo. Amet laboris id sit pariatur labore nostrud laborum
-			velit exercitation ea veniam minim mollit duis. Voluptate ea aliquip nisi consequat ipsum ipsum enim non Lorem.
-			Nulla ullamco ut nostrud Lorem quis officia dolore adipisicing.
-			Ex Lorem officia reprehenderit velit aute voluptate aliquip
-			exercitation in. Nulla anim ex amet do aliqua sunt laborum anim
-			ad. Cupidatat voluptate deserunt sint elit ipsum aliquip aliquip
-			excepteur. Elit irure sunt eu proident sit. Consectetur in
-			consectetur ex sint exercitation enim amet laboris nisi. Cillum
-			esse non ut id quis aliquip duis amet officia eu irure aliquip
-			sint quis. Magna voluptate dolor in esse aliqua esse adipisicing
-			commodo. Amet laboris id sit pariatur labore nostrud laborum
-			velit exercitation ea veniam minim mollit duis.
-		</p>
-		<hr>
-		<address>
+	</section>
+	<section>
+		<header>
+			<h2>Brief</h2>
+		</header>
+		<ul>
+			{#each adhoc.brief as item}
+				<li>{item}</li>
+			{/each}
+		</ul>
+	</section>
+	<section>
+		<header>
+			<h2>Requirements</h2>
+		</header>
+		<ul>
+			{#each adhoc.requirements as item}
+				<li>{item}</li>
+			{/each}
+		</ul>
+	</section>
+		<!-- <address>
 			{adhoc.email}
 		</address>
 		<address>
 			{#if adhoc.phone != null}
 				{adhoc.phone}
 			{/if}
-		</address>
-	</section>
+		</address> -->
 	<!-- CTA's -->
 	<Button {adhoc} {link}/>
 </div>
