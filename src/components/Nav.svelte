@@ -18,9 +18,9 @@
 		position: fixed;
 		top: 0;
 		/* Other */
-		backdrop-filter: blur(calc(var(--pt) * 3));
-		-webkit-backdrop-filter: blur(calc(var(--pt) * 3));
-		background-color: rgba(255, 255, 255, .9);
+		backdrop-filter: blur(calc(var(--pt) * 2));
+		-webkit-backdrop-filter: blur(calc(var(--pt) * 2));
+		background-color: rgba(255, 255, 255, .8);
 		border-bottom: 2px solid var(--col-primelight);
 		padding: 0 calc(var(--pt) * 3);
 		z-index: 200;
@@ -61,7 +61,7 @@
 			&nbsp;
 			Create
 		</a>
-		<a rel="prefetch" href="/saved" sapper:noscroll>
+		<a rel="prefetch" href="/posts/1" sapper:noscroll>
 			<svg><use xlink:href="/sprite.svg#menu"></use></svg>
 		</a>
 	</nav>

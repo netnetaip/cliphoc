@@ -16,3 +16,4 @@
 		<slot/>
 	</main>
 {/if}
+<Footer/>

@@ -4,6 +4,6 @@
 
 <!-- List -->
 <nav>
-	<a href="browse">Browse</a>
-	<a href="saved">Saved</a>
+	<a href="/posts/1">Posts</a>
+	<a href="/saved">Saved</a>
 </nav>

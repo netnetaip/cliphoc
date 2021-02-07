@@ -31,7 +31,7 @@
 		left: 0;
 		top: 0;
 		height: 100%;
-		background-color: var(--col-seco);
+		background-color: var(--col-primelight);
 		transition: width 0.4s;
 	}
 </style>

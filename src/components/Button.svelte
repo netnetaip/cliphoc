@@ -1,7 +1,6 @@
 <script>
 	// Exported
 	export let adhoc;
-	export let link;
 	export let state = false;
 
 	// Lets
@@ -30,64 +29,31 @@
 
 <!-- CSS -->
 <style>
-	div {
-		/* Display */
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		align-content: center;
-		justify-content: space-between;
-		/* Sizing */
-		min-height: calc(10vh + (var(--pt) * 2));
-		max-height: calc(10vh + (var(--pt) * 2));
-		height: calc(10vh + (var(--pt) * 2));
-		min-width: 100%;
-		max-width: 100%;
-		width: 100%;
-		/* Position */
-		position: relative;
-		bottom: 0;
-		/* Rest */
-		margin: calc(var(--pt) * 3);
-	}
-	a, label {
+	button {
 		/* Display */
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		align-content: center;
 		justify-content: center;
-	}
-	a {
 		/* Sizing */
-		min-height: 100%;
-		max-height: 100%;
-		height: 100%;
-		min-width: 100%;
+		min-height: calc((var(--pt) * 6));
+		max-height: calc((var(--pt) * 6));
+		height: calc((var(--pt) * 6));
+		min-width: none;
 		max-width: 100%;
-		width: 100%;
+		width: calc(100% - (var(--pt) * 6));
+		/* Position */
+		position: relative;
+		bottom: 0;
 		/* Rest */
+		margin: calc(var(--pt) * 3);
 		border-radius: var(--pt);
-		background-color: var(--col-seco);
-		color: var(--col-prime);
-		margin-right: var(--pt);
+		background-color: var(--col-primelight);
+		color: var(--col-black);
+		margin: calc((var(--pt) * 3)) 0;
 	}
-	svg {
-        /* Sizing */
-		min-height: calc(var(--pt) * 2.5);
-		max-height: calc(var(--pt) * 2.5);
-		height: calc(var(--pt) * 2.5);
-		min-width: calc(var(--pt) * 2.5);
-		max-width: calc(var(--pt) * 2.5);
-        width: calc(var(--pt) * 2.5);
-        /* Rest */
-        stroke: var(--col-black);
-        stroke-width: 2;
-		fill: none;
-    }
 </style>
 
 <!-- HTML -->
-<div>
-	<a href={link}>{labelContact}</a>
-</div>
+<button type="button">{labelContact}</button>
