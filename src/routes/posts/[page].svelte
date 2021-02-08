@@ -5,14 +5,15 @@
 <script context="module">
 	export async function preload({ params }) {
 		const page = +params.page;
+		const limit = 50;
 		// Fetch
-		const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=20`);
+		const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=${limit}`);
 		console.log("URL", res);
 
 		// Validate
 		if (res.status === 200) {
 			const adhoc = await res.json();
-			return { adhoc, page };
+			return { adhoc, page, limit };
 		}
 
 		// Error
@@ -28,6 +29,7 @@
 	// Exported
 	export let adhoc = [];
 	export let page;
+	export let limit;
 
 	// Next
 	$: next = `/posts/${+page + 1}`;
@@ -42,20 +44,24 @@
 
 <!-- Special -->
 <svelte:head>
-	<title>Browse</title>
+	<title>Posts</title>
 </svelte:head>
 
 <!-- HTML -->
 <section in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<header>
-		<h1>Board</h1>
+		{#if adhoc.length > 0}
+			<h1>Board</h1>
+		{:else}
+			<h1>List ended</h1>
+		{/if}
 	</header>
 	<div>
 		{#each adhoc as adhoc, i}
 			<Post {adhoc} />
 		{/each}
 	</div>
-	{#if next && adhoc.length > 0}
+	{#if next && adhoc.length === limit}
 		<a class="more" href={next}>
 			<svg><use xlink:href="/sprite.svg#plus" /></svg>
 			&nbsp;Load more
