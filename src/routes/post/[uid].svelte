@@ -1,3 +1,5 @@
+<svelte:options immutable />
+
 <!-- Server -->
 <script context="module">
 	export async function preload(page, session) {
@@ -34,7 +36,62 @@
 <svelte:head>
 	<title>{adhoc.title}</title>
 </svelte:head>
-<svelte:options immutable />
+
+<!-- HTML -->
+<div in:fly={{ duration: 320, y: 40, opacity: 1 }}>
+	<section>
+		<header>
+			{#if adhoc.type === "designer"}
+				<mark style="color: var(--col-tert)">{adhoc.type}</mark>
+			{:else}
+				<mark style="color: var(--col-seco)">{adhoc.type}</mark>
+			{/if}
+			<h1>{adhoc.title}</h1>
+			<dl>
+				<dt>{adhoc.author}</dt>
+				<dd>{adhoc.city}</dd>
+			</dl>
+		</header>
+	</section>
+	<!-- &nbsp;
+		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
+		{#if adhoc.currency === "USD"}
+			<a href="https://www.google.com/search?q={adhoc.amount}+usd+to+eur" target="_blank" rel="noopener noreferrer">
+				<svg><use xlink:href="/sprite.svg#plus"></use></svg>
+			</a>
+		{/if} -->
+	<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
+	<section>
+		<header>
+			<h2>Brief</h2>
+		</header>
+		<ul>
+			{#each adhoc.brief as item}
+				<li>{item}</li>
+			{/each}
+		</ul>
+	</section>
+	<section>
+		<header>
+			<h2>Requirements</h2>
+		</header>
+		<ul>
+			{#each adhoc.requirements as item}
+				<li>{item}</li>
+			{/each}
+		</ul>
+	</section>
+	<button type="button">Show contacts</button>
+</div>
+<!-- <address>
+	{adhoc.email}
+</address>
+<address>
+	{#if adhoc.phone != null}
+		{adhoc.phone}
+	{/if}
+</address> -->
+<!-- CTA's -->
 
 <!-- CSS -->
 <style>
@@ -73,16 +130,16 @@
 		list-style-type: none;
 	}
 	svg {
-        /* Sizing */
+		/* Sizing */
 		min-height: calc(var(--pt) * 2);
 		max-height: calc(var(--pt) * 2);
 		height: calc(var(--pt) * 2);
 		min-width: calc(var(--pt) * 2);
 		max-width: calc(var(--pt) * 2);
-        width: calc(var(--pt) * 2);
-        /* Rest */
-        stroke: var(--col-black);
-        stroke-width: 2.5;
+		width: calc(var(--pt) * 2);
+		/* Rest */
+		stroke: var(--col-black);
+		stroke-width: 2.5;
 		fill: none;
 		margin-right: var(--pt);
 	}
@@ -106,68 +163,12 @@
 	}
 	/* Fonts */
 	dt, li, strong {
-		font-size: .95rem;
+		font-size: 0.95rem;
 	}
 	dd, mark {
-		font-size: .85rem;
+		font-size: 0.85rem;
 	}
 	mark::before {
 		content: "#";
 	}
 </style>
-
-<!-- HTML -->
-<div in:fly={{ duration: 320, y: 40, opacity: 1 }}>
-	<section>
-		<header>
-			{#if adhoc.type === "designer"}
-				<mark style="color: var(--col-tert)">{adhoc.type}</mark>
-			{:else}
-				<mark style="color: var(--col-seco)">{adhoc.type}</mark>
-			{/if}
-			<h1>{adhoc.title}</h1>
-			<dl>
-				<dt>{adhoc.author}</dt>
-				<dd>{adhoc.city}</dd>
-			</dl>
-		</header>
-	</section>
-	<!-- &nbsp;
-		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
-		{#if adhoc.currency === "USD"}
-			<a href="https://www.google.com/search?q={adhoc.amount}+usd+to+eur" target="_blank" rel="noopener noreferrer">
-				<svg><use xlink:href="/sprite.svg#plus"></use></svg>
-			</a>
-		{/if} -->
-		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
-	<section>
-		<header>
-			<h2>Brief</h2>
-		</header>
-		<ul>
-			{#each adhoc.brief as item}
-				<li>{item}</li>
-			{/each}
-		</ul>
-	</section>
-	<section>
-		<header>
-			<h2>Requirements</h2>
-		</header>
-		<ul>
-			{#each adhoc.requirements as item}
-				<li>{item}</li>
-			{/each}
-		</ul>
-	</section>
-	<button type="button">Show contacts</button>
-</div>
-<!-- <address>
-	{adhoc.email}
-</address>
-<address>
-	{#if adhoc.phone != null}
-		{adhoc.phone}
-	{/if}
-</address> -->
-<!-- CTA's -->

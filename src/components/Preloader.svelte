@@ -17,6 +17,12 @@
 	});
 </script>
 
+{#if visible}
+	<div>
+		<span style="width: {p * 100}%" />
+	</div>
+{/if}
+
 <style>
 	div {
 		position: absolute;
@@ -35,9 +41,3 @@
 		transition: width 0.4s;
 	}
 </style>
-
-{#if visible}
-	<div>
-		<span style="width: {p * 100}%" />
-	</div>
-{/if}

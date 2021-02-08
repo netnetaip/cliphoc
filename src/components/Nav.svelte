@@ -1,7 +1,18 @@
+<!-- HTML -->
+<nav>
+	<a rel="prefetch" href="/new" sapper:noscroll>
+		<svg><use xlink:href="/sprite.svg#plus" /></svg>
+		&nbsp; Create
+	</a>
+	<a rel="prefetch" href="/posts/1" sapper:noscroll>
+		<svg><use xlink:href="/sprite.svg#menu" /></svg>
+	</a>
+</nav>
+
 <!-- CSS -->
 <style>
-    nav {
-        /* Display */
+	nav {
+		/* Display */
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -20,13 +31,13 @@
 		/* Other */
 		backdrop-filter: blur(calc(var(--pt) * 2));
 		-webkit-backdrop-filter: blur(calc(var(--pt) * 2));
-		background-color: rgba(255, 255, 255, .8);
+		background-color: rgba(255, 255, 255, 0.8);
 		border-bottom: 2px solid var(--col-primelight);
 		padding: 0 calc(var(--pt) * 3);
 		z-index: 200;
 	}
-    a {
-        /* Display */
+	a {
+		/* Display */
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -38,30 +49,18 @@
 		height: 100%;
 		/* Rest */
 		text-transform: capitalize;
-    }
-    svg {
-        /* Sizing */
+	}
+	svg {
+		/* Sizing */
 		min-height: calc(var(--pt) * 2.5);
 		max-height: calc(var(--pt) * 2.5);
 		height: calc(var(--pt) * 2.5);
 		min-width: calc(var(--pt) * 2.5);
 		max-width: calc(var(--pt) * 2.5);
-        width: calc(var(--pt) * 2.5);
-        /* Rest */
-        stroke: var(--col-black);
-        stroke-width: 2.5;
+		width: calc(var(--pt) * 2.5);
+		/* Rest */
+		stroke: var(--col-black);
+		stroke-width: 2.5;
 		fill: none;
 	}
 </style>
-
-<!-- HTML -->
-	<nav>
-		<a rel="prefetch" href="/new" sapper:noscroll>
-			<svg><use xlink:href="/sprite.svg#plus"></use></svg>
-			&nbsp;
-			Create
-		</a>
-		<a rel="prefetch" href="/posts/1" sapper:noscroll>
-			<svg><use xlink:href="/sprite.svg#menu"></use></svg>
-		</a>
-	</nav>

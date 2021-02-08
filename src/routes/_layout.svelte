@@ -1,6 +1,6 @@
 <script>
-	import { stores } from '@sapper/app';
-	import Preloader from '../components/Preloader.svelte';
+	import { stores } from "@sapper/app";
+	import Preloader from "../components/Preloader.svelte";
 	import Footer from "../components/Footer.svelte";
 	import Nav from "../components/Nav.svelte";
 
@@ -8,12 +8,12 @@
 </script>
 
 <!-- HTML -->
-<Nav/>
+<Nav />
 {#if $preloading}
-	<Preloader/>
+	<Preloader />
 {:else}
 	<main>
-		<slot/>
+		<slot />
 	</main>
 {/if}
-<Footer/>
+<!-- <Footer /> -->
