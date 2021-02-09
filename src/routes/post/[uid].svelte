@@ -162,11 +162,8 @@
 		margin: calc((var(--pt) * 3)) 0;
 	}
 	/* Fonts */
-	dt, li, strong {
-		font-size: 0.95rem;
-	}
-	dd, mark {
-		font-size: 0.85rem;
+	dt, dd, li, strong, button, mark {
+		font-size: 1rem;
 	}
 	mark::before {
 		content: "#";

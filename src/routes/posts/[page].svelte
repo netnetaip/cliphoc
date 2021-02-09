@@ -3,19 +3,32 @@
 
 <!-- Server -->
 <script context="module">
-	export async function preload({ params }) {
-		const page = +params.page;
-		const limit = 50;
-		// Fetch
-		const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=${limit}`);
-		console.log("URL", res);
+	// export async function preload({ params }) {
+	// 	const page = +params.page;
+	// 	const limit = 5;
+	// 	// Fetch
+	// 	const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=${limit}`)
 
+	// 	// Validate
+	// 	if (res.status === 200) {
+	// 		const adhoc = await res.json();
+	// 		return { adhoc, page, limit };
+	// 	}
+
+	// 	// Error
+	// 	this.error(500, "Problems with server. Be right back soon ;)");
+	// }
+
+	export async function preload(page) {
+		// Fetch
+		const res = await this.fetch(
+			`https://6016e904f534300017a4509d.mockapi.io/board?page=1&limit=10`
+		);
 		// Validate
 		if (res.status === 200) {
 			const adhoc = await res.json();
-			return { adhoc, page, limit };
+			return { adhoc, page };
 		}
-
 		// Error
 		this.error(500, "Problems with server. Be right back soon ;)");
 	}
@@ -29,10 +42,21 @@
 	// Exported
 	export let adhoc = [];
 	export let page;
-	export let limit;
+	export let limit = 10;
 
-	// Next
-	$: next = `/posts/${+page + 1}`;
+	// Load More
+	const load_more = async () => {
+		limit += 10;
+		const res = await fetch(
+			`https://6016e904f534300017a4509d.mockapi.io/board?page=1&limit=${limit}`
+		);
+
+		// Validate
+		if (res.status === 200) {
+			const data = await res.json();
+			return (adhoc = data);
+		}
+	};
 
 	// DEVELOPER_CONSOLE_LOG
 	$: console.log(
@@ -61,12 +85,16 @@
 			<Post {adhoc} />
 		{/each}
 	</div>
-	{#if next && adhoc.length === limit}
+	<!-- {#if next && adhoc.length === limit}
 		<a class="more" href={next}>
 			<svg><use xlink:href="/sprite.svg#plus" /></svg>
 			&nbsp;Load more
 		</a>
-	{/if}
+	{/if} -->
+	<button on:click={load_more}>
+		<svg><use xlink:href="/sprite.svg#plus" /></svg>
+		&nbsp;Load more
+	</button>
 </section>
 
 <!-- CSS -->
@@ -127,7 +155,7 @@
 		/* Rest */
 		padding: 0 calc(var(--pt) * 3);
 	}
-	a {
+	a,button {
 		/* Display */
 		display: flex;
 		flex-direction: row;

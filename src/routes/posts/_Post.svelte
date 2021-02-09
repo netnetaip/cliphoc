@@ -51,11 +51,8 @@
 		padding-top: var(--pt);
 	}
 	/* Fonts */
-	dt, strong {
+	dt, dd, strong, mark {
 		font-size: .9rem;
-	}
-	dd, mark {
-		font-size: .8rem;
 	}
 	mark::before {
 		content: "#";
