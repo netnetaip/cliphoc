@@ -51,8 +51,14 @@
 		padding-top: var(--pt);
 	}
 	/* Fonts */
-	dt, dd, strong, mark {
-		font-size: .9rem;
+	h2 {
+		font-size: calc(.5rem + 3vw);
+	}
+	dt, dd {
+		font-size: calc(.5rem + 2vw);
+	}
+	strong, mark {
+		font-size: calc(.5rem + 1.5vw);
 	}
 	mark::before {
 		content: "#";
@@ -62,11 +68,12 @@
 <!-- HTML -->
 <a href="post/{adhoc.id}">
     <article>
-        {#if adhoc.type === "designer"}
+        <!-- {#if adhoc.type === "designer"}
             <mark style="color: var(--col-tert)">{adhoc.type}</mark>
         {:else}
             <mark style="color: var(--col-seco)">{adhoc.type}</mark>
-        {/if}
+        {/if} -->
+		<mark style="color: #BBB">{adhoc.type}</mark>
         <h2>{adhoc.title}</h2>
         <dl>
             <dt>{adhoc.author}</dt>

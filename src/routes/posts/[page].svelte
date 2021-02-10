@@ -3,32 +3,18 @@
 
 <!-- Server -->
 <script context="module">
-	// export async function preload({ params }) {
-	// 	const page = +params.page;
-	// 	const limit = 5;
-	// 	// Fetch
-	// 	const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=${limit}`)
-
-	// 	// Validate
-	// 	if (res.status === 200) {
-	// 		const adhoc = await res.json();
-	// 		return { adhoc, page, limit };
-	// 	}
-
-	// 	// Error
-	// 	this.error(500, "Problems with server. Be right back soon ;)");
-	// }
-
-	export async function preload(page) {
+	export async function preload({ params }) {
+		const page = +params.page;
+		const limit = 50;
 		// Fetch
-		const res = await this.fetch(
-			`https://6016e904f534300017a4509d.mockapi.io/board?page=1&limit=10`
-		);
+		const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=${limit}`)
+
 		// Validate
 		if (res.status === 200) {
 			const adhoc = await res.json();
-			return { adhoc, page };
+			return { adhoc, page, limit };
 		}
+
 		// Error
 		this.error(500, "Problems with server. Be right back soon ;)");
 	}
@@ -42,21 +28,10 @@
 	// Exported
 	export let adhoc = [];
 	export let page;
-	export let limit = 10;
+	export let limit;
 
 	// Load More
-	const load_more = async () => {
-		limit += 10;
-		const res = await fetch(
-			`https://6016e904f534300017a4509d.mockapi.io/board?page=1&limit=${limit}`
-		);
-
-		// Validate
-		if (res.status === 200) {
-			const data = await res.json();
-			return (adhoc = data);
-		}
-	};
+	$: next = `/posts/${+page + 1}`;
 
 	// DEVELOPER_CONSOLE_LOG
 	$: console.log(
@@ -76,33 +51,34 @@
 	<header>
 		{#if adhoc.length > 0}
 			<h1>Board</h1>
+			<p>Here you can find posts by community. Scroll to search something. Bla, bla, bla.</p>
 		{:else}
 			<h1>List ended</h1>
 		{/if}
 	</header>
+	<hr>
 	<div>
 		{#each adhoc as adhoc, i}
 			<Post {adhoc} />
 		{/each}
 	</div>
-	<!-- {#if next && adhoc.length === limit}
-		<a class="more" href={next}>
-			<svg><use xlink:href="/sprite.svg#plus" /></svg>
-			&nbsp;Load more
-		</a>
-	{/if} -->
-	<button on:click={load_more}>
-		<svg><use xlink:href="/sprite.svg#plus" /></svg>
-		&nbsp;Load more
-	</button>
+	{#if next && adhoc.length === limit}
+		<a class="more" href={next}>Next page</a>
+	{/if}
 </section>
 
 <!-- CSS -->
 <style>
-	section {
-		/* Display */
+	section, section > div, header {
 		display: flex;
 		flex-direction: column;
+	}
+	a {
+		display: flex;
+		flex-direction: row;
+	}
+	section {
+		/* Display */
 		align-items: center;
 		align-content: center;
 		justify-content: center;
@@ -115,14 +91,10 @@
 		width: 100vw;
 		/* Rest */
 		background-color: var(--col-prime);
-		overflow-y: scroll;
-		overflow-x: hidden;
 		overscroll-behavior: contain;
 	}
 	section > div {
 		/* Display */
-		display: flex;
-		flex-direction: column;
 		align-items: flex-start;
 		align-content: flex-start;
 		justify-content: flex-start;
@@ -135,39 +107,30 @@
 		min-width: 100%;
 		max-width: 100%;
 		width: 100%;
-		/* Rest */
-		overflow: auto;
 	}
 	header {
 		/* Display */
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
-		align-content: flex-end;
-		justify-content: flex-start;
+		align-items: flex-start;
+		align-content: flex-start;
+		justify-content: flex-end;
 		/* Sizing */
-		min-height: 8vh;
-		max-height: 8vh;
-		height: 8vh;
-		min-width: 100%;
+		min-width: none;
 		max-width: 100%;
 		width: 100%;
 		/* Rest */
-		padding: 0 calc(var(--pt) * 3);
+		padding: calc(var(--pt) * 3) calc(var(--pt) * 3) calc(var(--pt) * 6);
 	}
-	a,button {
+	a {
 		/* Display */
-		display: flex;
-		flex-direction: row;
 		align-items: center;
 		align-content: center;
 		justify-content: center;
 		/* Sizing */
 		min-width: none;
 		max-width: 100%;
-		width: auto;
+		width: calc(100% - (var(--pt) * 6));
 		/* Rest */
-		padding: calc(var(--pt) * 1.5) calc(var(--pt) * 3);
+		padding: calc(var(--pt) * 2) calc(var(--pt) * 3);
 		border-radius: var(--pt);
 		background-color: var(--col-primelight);
 		color: var(--col-black);
@@ -185,5 +148,9 @@
 		stroke: var(--col-black);
 		stroke-width: 2.5;
 		fill: none;
+	}
+	/* Font */
+	h1 {
+		font-size: calc(.5rem + 5vw);
 	}
 </style>

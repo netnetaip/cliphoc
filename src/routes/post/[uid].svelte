@@ -41,11 +41,7 @@
 <div in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<section>
 		<header>
-			{#if adhoc.type === "designer"}
-				<mark style="color: var(--col-tert)">{adhoc.type}</mark>
-			{:else}
-				<mark style="color: var(--col-seco)">{adhoc.type}</mark>
-			{/if}
+			<mark style="color: #BBB">{adhoc.type}</mark>
 			<h1>{adhoc.title}</h1>
 			<dl>
 				<dt>{adhoc.author}</dt>
@@ -111,11 +107,10 @@
 		align-content: flex-start;
 		justify-content: flex-start;
 		/* Sizing */
-		min-width: none;
+		min-width: 100vw;
 		max-width: 100%;
 		width: 100%;
-	}
-	header {
+		/* Rest */
 		padding: calc(var(--pt) * 3) calc(var(--pt) * 3) 0;
 	}
 	ul, strong {
@@ -128,20 +123,6 @@
 	}
 	li {
 		list-style-type: none;
-	}
-	svg {
-		/* Sizing */
-		min-height: calc(var(--pt) * 2);
-		max-height: calc(var(--pt) * 2);
-		height: calc(var(--pt) * 2);
-		min-width: calc(var(--pt) * 2);
-		max-width: calc(var(--pt) * 2);
-		width: calc(var(--pt) * 2);
-		/* Rest */
-		stroke: var(--col-black);
-		stroke-width: 2.5;
-		fill: none;
-		margin-right: var(--pt);
 	}
 	button {
 		/* Display */
@@ -162,8 +143,17 @@
 		margin: calc((var(--pt) * 3)) 0;
 	}
 	/* Fonts */
+	h1 {
+		font-size: calc(.5rem + 5vw);
+	}
+	h2 {
+		font-size: calc(.5rem + 3vw);
+	}
 	dt, dd, li, strong, button, mark {
-		font-size: 1rem;
+		font-size: calc(.5rem + 2vw);
+	}
+	mark {
+		font-size: calc(.5rem + 1.5vw);
 	}
 	mark::before {
 		content: "#";
