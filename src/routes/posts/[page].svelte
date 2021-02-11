@@ -149,8 +149,4 @@
 		stroke-width: 2.5;
 		fill: none;
 	}
-	/* Font */
-	h1 {
-		font-size: calc(.5rem + 5vw);
-	}
 </style>

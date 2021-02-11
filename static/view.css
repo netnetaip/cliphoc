@@ -31,15 +31,32 @@ h1, h2, dt, strong, p, a, dd, button, li, mark, address, sup {
     color: var(--col-black);
     line-height: 1.4;
 }
+/* Font Family */
 h1, h2, dt, strong, dd, a, button, label, mark, sup {
     font-family: gil-semi, Arial, Helvetica, sans-serif;
 }
 p, li, address {
     font-family: gil-med, Arial, Helvetica, sans-serif;
 }
+/* Font Sizes */
+h1 {
+    font-size: clamp(1rem + 1.8vh, 1rem + 1.8vh, 1rem + 1.8vh);
+}
+h2 {
+    font-size: clamp(1rem + 0.4vh, 1rem + 0.4vh, 1rem + 0.4vh);
+}
+dt, dd, li, strong, button {
+    font-size: clamp(1rem, 1rem, 1rem);
+}
+strong, mark {
+    font-size: clamp(1rem - 0.3vh, 1rem - 0.3vh, 1rem - 0.3vh);
+}
 /* Font Specifics */
 dd {
     color: var(--col-gray);
+}
+mark::before {
+    content: "#";
 }
 mark {
     background-color: transparent;

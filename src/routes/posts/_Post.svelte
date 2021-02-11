@@ -50,19 +50,6 @@
     article > strong {
 		padding-top: var(--pt);
 	}
-	/* Fonts */
-	h2 {
-		font-size: calc(.5rem + 3vw);
-	}
-	dt, dd {
-		font-size: calc(.5rem + 2vw);
-	}
-	strong, mark {
-		font-size: calc(.5rem + 1.5vw);
-	}
-	mark::before {
-		content: "#";
-	}
 </style>
 
 <!-- HTML -->

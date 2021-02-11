@@ -142,20 +142,4 @@
 		color: var(--col-prime);
 		margin: calc((var(--pt) * 3)) 0;
 	}
-	/* Fonts */
-	h1 {
-		font-size: calc(.5rem + 5vw);
-	}
-	h2 {
-		font-size: calc(.5rem + 3vw);
-	}
-	dt, dd, li, strong, button, mark {
-		font-size: calc(.5rem + 2vw);
-	}
-	mark {
-		font-size: calc(.5rem + 1.5vw);
-	}
-	mark::before {
-		content: "#";
-	}
 </style>
