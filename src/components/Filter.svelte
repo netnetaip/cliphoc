@@ -15,19 +15,17 @@
 
 <!-- HTML -->
 <form on:submit|preventDefault>
-    <fieldset>
-        {#each labels as label}
-            <label>
+    {#each labels as label}
+        <label>
+            <input
+                type="checkbox"
+                value={label}
+                name={label}
+                aria-pressed="false"
+                bind:group={checkgroup} />
                 {label}
-                <input
-                    type="checkbox"
-                    value={label}
-                    name={label}
-                    aria-pressed="false"
-                    bind:group={checkgroup} />
-            </label>
-        {/each}
-    </fieldset>
+        </label>
+    {/each}
 </form>
 
 <!-- CSS -->
@@ -46,21 +44,6 @@
 		/* Rest */
 		/* padding: calc(var(--pt) * 3) calc(var(--pt) * 3); */
     }
-    fieldset {
-        /* Display */
-		display: grid;
-		align-items: flex-start;
-		align-content: flex-start;
-		justify-content: flex-start;
-        grid-auto-flow: column;
-        grid-gap: calc(var(--pt) * 2);
-        /* Sizing */
-		min-width: 100%;
-		max-width: 100%;
-		width: 100%;
-        /* Rest */
-        border: none;
-    }
     label {
         /* Display */
 		display: flex;
@@ -68,17 +51,36 @@
 		align-items: center;
 		align-content: center;
 		justify-content: flex-start;
+        /* Sizing */
+		min-width: 50%;
+		max-width: 50%;
+		width: 50%;
         /* Rest */
 		padding: var(--pt);
         background-color: var(--col-primelight);
         border-radius: var(--pt);
     }
-    input {
-        /* appearance: none; */
-        /* -webkit-appearance: none; */
-        margin-left: 8px;
+    label:first-of-type {
+        background-color: rgba(204, 0, 204, 0.2);
     }
-    input:checked + label {
+    label:last-of-type {
+        background-color: rgba(34, 102, 238, 0.2);
+    }
+    input[type=checkbox] {
+         /* Display */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		align-content: center;
+		justify-content: flex-start;
+        /* Rest */
+        appearance: none;
+        -webkit-appearance: none;
+        background-color: blanchedalmond;
+        padding: 8px;
+    }
+    input[type=checkbox]:checked {
         color: red;
+        background-color: lightsalmon !important;
     }
 </style>
