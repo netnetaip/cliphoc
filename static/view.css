@@ -4,9 +4,8 @@
     --col-primelight: #EAEAEA;
     --col-ghost: #F0F0F0;
     --col-seco: #2266EE;
-    --col-tert: #CC00CC;
-    --col-black: #000;
-    --col-gray: #808080;
+    --col-black: #000000;
+    --col-gray: #AAAAAA;
     /* Point */
     --pt: 8px;
 }
@@ -25,7 +24,7 @@ h1, h2, dt, strong, p, a, dd, button, li, mark, address, sup {
     font-style: normal;
     font-weight: normal;
     text-decoration: none;
-    letter-spacing: .02rem;
+    letter-spacing: 0.02rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--col-black);
@@ -40,19 +39,22 @@ p, li, address {
 }
 /* Font Sizes */
 h1 {
-    font-size: clamp(1rem + 1.8vh, 1rem + 1.8vh, 1rem + 1.8vh);
+    font-size: clamp(1.6rem, 1.6rem, 1.6rem);
 }
 h2 {
-    font-size: clamp(1rem + 0.4vh, 1rem + 0.4vh, 1rem + 0.4vh);
+    font-size: clamp(1.1rem, 1.1rem, 1.1rem);
 }
-dt, dd, li, strong, button {
-    font-size: clamp(1rem, 1rem, 1rem);
+dt, li, strong, button {
+    font-size: clamp(0.95rem, 0.95rem, 0.95rem);
+}
+dd {
+    font-size: clamp(0.85rem, 0.85rem, 0.85rem);
 }
 strong, mark {
-    font-size: clamp(1rem - 0.3vh, 1rem - 0.3vh, 1rem - 0.3vh);
+    font-size: clamp(0.75rem, 0.75rem, 0.75rem);
 }
 /* Font Specifics */
-dd {
+dd, mark {
     color: var(--col-gray);
 }
 mark::before {
@@ -93,7 +95,7 @@ body, main {
     overflow-x: hidden;
 }
 main {
-    margin: 10vh 0 0; 
+    margin: calc(var(--pt) * 8) 0 0; 
 }
 hr {
     /* Sizing */

@@ -4,7 +4,7 @@
 		<svg><use xlink:href="/sprite.svg#plus" /></svg>
 		&nbsp; Create
 	</a>
-	<a rel="prefetch" href="/posts/1" sapper:noscroll>
+	<a rel="prefetch" href="/board/1" sapper:noscroll>
 		<svg><use xlink:href="/sprite.svg#menu" /></svg>
 	</a>
 </nav>
@@ -19,9 +19,9 @@
 		align-content: center;
 		justify-content: space-between;
 		/* Sizing */
-		min-height: 10vh;
-		max-height: 10vh;
-		height: 10vh;
+		min-height: calc(var(--pt) * 8);
+		max-height: calc(var(--pt) * 8);
+		height: calc(var(--pt) * 8);
 		min-width: 100vw;
 		max-width: 100vw;
 		width: 100vw;

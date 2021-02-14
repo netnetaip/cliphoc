@@ -1,69 +1,84 @@
 <script>
-    import { fly } from "svelte/transition";
-
     // Exported
-    export let checkgroup;
-    export let translate;
-    export let cards;
-    export let list;
+    export let checkgroup = [];
 
-    // Let
-    let labels = ["fee", "water", "pets", "wc"];
+    // Props
+    let labels = ["designer", "developer"];
 
     // Checkbox Filtering
-    const subbyhubby = () => {
-		if (translate) {
-			return cards = list.filter(({ tags }) =>
-				checkgroup.every((tag) => tags.includes(tag))
-            );
-		}
-	};
-
-    // DEVELOPER_CONSOLE_LOG
-	$: console.log("%c FILTER Checkgroup ", "color:orange; font-weight:bold; font-size:14px", checkgroup);
+    // const subbyhubby = () => {
+    //     return (cards = list.filter(({ tags }) =>
+    //         checkgroup.every((tag) => tags.includes(tag))
+    //     ));
+    // };
 </script>
 
-<!-- Filters -->
-{#if translate}
-    <section id="filter" 
-        transition:fly={{duration: 240, y: 400, opacity: .9}}>
-        <header>
-            <h3>Filter by</h3>
-            <button on:click={() => (translate = false)}>
-                {#if checkgroup.length == 0}
-                    <svg><use xlink:href="/sprite.svg#close"></use></svg>
-                {:else}
-                    <svg><use xlink:href="/sprite.svg#check"></use></svg>
-                {/if}
-            </button>
-        </header>
-        <form on:submit|preventDefault>
-            <!-- General -->
-            <fieldset>
-                {#each labels as label}
-                    <label>
-                        <dfn>
-                            {#if label === "water"}
-                                Water source
-                            {:else if label === "fee"}
-                                Paid services
-                            {:else if label === "pets"}
-                                Pets allowed
-                            {:else if label === "wc"}
-                                Toilet
-                            {/if}
-                        </dfn>
-                        <input
-                            type="checkbox" 
-                            value={label} 
-                            name={label} 
-                            aria-pressed="false" 
-                            bind:group={checkgroup}/>
-                    </label>
-                    <hr />
-                {/each}
-            </fieldset>
-        </form>
-    </section>
-    <hr>
-{/if}
+<!-- HTML -->
+<form on:submit|preventDefault>
+    <fieldset>
+        {#each labels as label}
+            <label>
+                {label}
+                <input
+                    type="checkbox"
+                    value={label}
+                    name={label}
+                    aria-pressed="false"
+                    bind:group={checkgroup} />
+            </label>
+        {/each}
+    </fieldset>
+</form>
+
+<!-- CSS -->
+<style>
+    form {
+        /* Display */
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		align-content: flex-start;
+		justify-content: flex-start;
+		/* Sizing */
+		min-width: 100%;
+		max-width: 100%;
+		width: 100%;
+		/* Rest */
+		/* padding: calc(var(--pt) * 3) calc(var(--pt) * 3); */
+    }
+    fieldset {
+        /* Display */
+		display: grid;
+		align-items: flex-start;
+		align-content: flex-start;
+		justify-content: flex-start;
+        grid-auto-flow: column;
+        grid-gap: calc(var(--pt) * 2);
+        /* Sizing */
+		min-width: 100%;
+		max-width: 100%;
+		width: 100%;
+        /* Rest */
+        border: none;
+    }
+    label {
+        /* Display */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		align-content: center;
+		justify-content: flex-start;
+        /* Rest */
+		padding: var(--pt);
+        background-color: var(--col-primelight);
+        border-radius: var(--pt);
+    }
+    input {
+        /* appearance: none; */
+        /* -webkit-appearance: none; */
+        margin-left: 8px;
+    }
+    input:checked + label {
+        color: red;
+    }
+</style>

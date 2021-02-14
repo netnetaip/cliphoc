@@ -141,5 +141,11 @@
 		background-color: var(--col-seco);
 		color: var(--col-prime);
 		margin: calc((var(--pt) * 3)) 0;
+		/* Transition */
+		transition: transform 0.2s cubic-bezier(0.44, 0.21, 0, 1);
+		will-change: transform;
+	}
+	button:active {
+		transform: scale3d(0.96, 0.96, 1);
 	}
 </style>
