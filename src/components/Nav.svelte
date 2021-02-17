@@ -31,7 +31,7 @@
 		/* Other */
 		backdrop-filter: blur(calc(var(--pt) * 2)) saturate(150%);
 		-webkit-backdrop-filter: blur(calc(var(--pt) * 2)) saturate(150%);
-		background-color: rgba(255, 255, 255, 0.6);
+		background-color: rgba(255, 255, 255, 0.8);
 		border-bottom: 2px solid var(--col-primelight);
 		padding: 0 calc(var(--pt) * 3);
 		z-index: 200;

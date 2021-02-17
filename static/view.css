@@ -6,6 +6,7 @@
     --col-seco: #2266EE;
     --col-tert: #CC00CC;
     --col-black: #000000;
+    --col-dark: #8F8F8F;
     --col-gray: #AAAAAA;
     /* Point */
     --pt: 8px;
@@ -20,7 +21,7 @@
     src: url("/font/Gilroy-SemiBold.woff");
 }
 
-h1, h2, dt, strong, p, a, dd, button, li, mark, address, sup {
+h1, h2, dt, strong, p, a, dd, button, li, mark, address, select {
     font-display: optional;
     font-style: normal;
     font-weight: normal;
@@ -32,7 +33,7 @@ h1, h2, dt, strong, p, a, dd, button, li, mark, address, sup {
     line-height: 1.4;
 }
 /* Font Family */
-h1, h2, dt, strong, dd, a, button, label, mark, sup {
+h1, h2, dt, strong, dd, a, button, label, mark, select {
     font-family: gil-semi, Arial, Helvetica, sans-serif;
 }
 p, li, address {
@@ -40,12 +41,12 @@ p, li, address {
 }
 /* Font Sizes */
 h1 {
-    font-size: clamp(1.6rem, 1.6rem, 1.6rem);
+    font-size: clamp(1.4rem, 1.4rem, 1.4rem);
 }
 h2 {
     font-size: clamp(1.1rem, 1.1rem, 1.1rem);
 }
-dt, li, strong, button {
+dt, li, strong, button, select {
     font-size: clamp(0.95rem, 0.95rem, 0.95rem);
 }
 dd {
@@ -57,6 +58,9 @@ strong, mark {
 /* Font Specifics */
 dd, mark {
     color: var(--col-gray);
+}
+li {
+    color: var(--col-dark);
 }
 mark::before {
     content: "#";
@@ -76,6 +80,7 @@ mark {
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
+    /* border: thin dashed red; */
 }
 body, main {
     /* Display */

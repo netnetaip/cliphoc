@@ -41,13 +41,14 @@
 <div in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<section>
 		<header>
-			<mark style="color: #BBB">{adhoc.type}</mark>
+			<mark>{adhoc.type}</mark>
 			<h1>{adhoc.title}</h1>
 			<dl>
 				<dt>{adhoc.author}</dt>
 				<dd>{adhoc.city}</dd>
 			</dl>
 		</header>
+		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
 	</section>
 	<!-- &nbsp;
 		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
@@ -56,7 +57,6 @@
 				<svg><use xlink:href="/sprite.svg#plus"></use></svg>
 			</a>
 		{/if} -->
-	<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
 	<section>
 		<header>
 			<h2>Brief</h2>
@@ -98,6 +98,16 @@
 		align-items: center;
 		align-content: center;
 		justify-content: flex-start;
+		/* Sizing */
+		min-width: 100%;
+		max-width: 100%;
+		width: 100%;
+	}
+	div {
+		padding: calc(var(--pt) * 3);
+	}
+	section {
+		margin-bottom: calc(var(--pt) * 3);
 	}
 	header {
 		/* Display */
@@ -107,11 +117,9 @@
 		align-content: flex-start;
 		justify-content: flex-start;
 		/* Sizing */
-		min-width: 100vw;
+		min-width: 100%;
 		max-width: 100%;
 		width: 100%;
-		/* Rest */
-		padding: calc(var(--pt) * 3) calc(var(--pt) * 3) 0;
 	}
 	ul, strong {
 		/* Sizing */
@@ -119,7 +127,7 @@
 		max-width: 100%;
 		width: 100%;
 		/* Rest */
-		padding: var(--pt) calc(var(--pt) * 3);
+		padding: var(--pt) 0;
 	}
 	li {
 		list-style-type: none;
@@ -132,15 +140,14 @@
 		align-content: center;
 		justify-content: center;
 		/* Sizing */
-		min-width: none;
+		min-width: 100%;
 		max-width: 100%;
-		width: calc(100% - (var(--pt) * 6));
+		width: 100%;
 		/* Rest */
 		padding: calc(var(--pt) * 2) calc(var(--pt) * 3);
 		border-radius: var(--pt);
 		background-color: var(--col-seco);
 		color: var(--col-prime);
-		margin: calc((var(--pt) * 3)) 0;
 		/* Transition */
 		transition: transform 0.2s cubic-bezier(0.44, 0.21, 0, 1);
 		will-change: transform;

@@ -1,86 +1,75 @@
 <script>
-    // Exported
-    export let checkgroup = [];
+    // Exports
+    export let adhoc;
+    export let adhocfiltered = [];
 
     // Props
-    let labels = ["designer", "developer"];
+    let labels = ["designer", "developer", "all"];
+    let selected;
 
-    // Checkbox Filtering
-    // const subbyhubby = () => {
-    //     return (cards = list.filter(({ tags }) =>
-    //         checkgroup.every((tag) => tags.includes(tag))
+    // Filtering
+    $: adhocfiltered = adhoc.filter((tag) => tag.type === selected);
+
+    // // Checkbox Filtering
+    // $: subbyhubby = () => {
+    //     return (checkgroup = adhoc.filter(({ type }) =>
+    //         adhoc.every((tag) => type.includes(tag))
     //     ));
     // };
+
+    // Check Local Storage
+    $: (async () => {
+        if (typeof window !== "undefined") {
+            if (sessionStorage.getItem("adhoc_type") === null) {
+                return selected = "designer";
+            } else {
+                return selected = sessionStorage.getItem("adhoc_type");
+            }
+        }
+    })();
+
+    // Mark Checkbox
+    const markit = async () => {
+        if (!sessionStorage.getItem(selected)) {
+            return sessionStorage.setItem("adhoc_type", selected);
+        } else {
+            return sessionStorage.removeItem("adhoc_type", selected);
+        }
+    };
 </script>
 
 <!-- HTML -->
 <form on:submit|preventDefault>
-    {#each labels as label}
-        <label>
-            <input
-                type="checkbox"
-                value={label}
-                name={label}
-                aria-pressed="false"
-                bind:group={checkgroup} />
-                {label}
-        </label>
-    {/each}
+    <select name="labels" id="labels" bind:value={selected} on:blur={markit}>
+        {#each labels as label}
+            <option value={label}>{label}</option>
+        {/each}
+    </select>
 </form>
 
 <!-- CSS -->
 <style>
-    form {
+    form,
+    select {
         /* Display */
-		display: flex;
-		flex-direction: row;
-		align-items: flex-start;
-		align-content: flex-start;
-		justify-content: flex-start;
-		/* Sizing */
-		min-width: 100%;
-		max-width: 100%;
-		width: 100%;
-		/* Rest */
-		/* padding: calc(var(--pt) * 3) calc(var(--pt) * 3); */
-    }
-    label {
-        /* Display */
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		align-content: center;
-		justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-content: flex-start;
+        justify-content: space-between;
         /* Sizing */
-		min-width: 50%;
-		max-width: 50%;
-		width: 50%;
-        /* Rest */
-		padding: var(--pt);
-        background-color: var(--col-primelight);
-        border-radius: var(--pt);
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
     }
-    label:first-of-type {
-        background-color: rgba(204, 0, 204, 0.2);
-    }
-    label:last-of-type {
-        background-color: rgba(34, 102, 238, 0.2);
-    }
-    input[type=checkbox] {
-         /* Display */
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		align-content: center;
-		justify-content: flex-start;
-        /* Rest */
+    select {
+        /* Appearance */
         appearance: none;
         -webkit-appearance: none;
-        background-color: blanchedalmond;
-        padding: 8px;
-    }
-    input[type=checkbox]:checked {
-        color: red;
-        background-color: lightsalmon !important;
+        background: transparent;
+        border: none;
+        /* Rest */
+        text-transform: capitalize;
+        padding: calc(var(--pt) * 2) calc(var(--pt) * 3);
     }
 </style>

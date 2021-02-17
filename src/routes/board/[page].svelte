@@ -27,6 +27,7 @@
 	import Filter from "../../components/Filter.svelte";
 
 	// Exported
+	export let adhocfiltered = [];
 	export let adhoc = [];
 	export let page;
 	export let limit;
@@ -40,6 +41,7 @@
 		"color:blue; font-weight:bold; font-size:14px",
 		adhoc
 	);
+	$: console.log(adhocfiltered);
 </script>
 
 <!-- Special -->
@@ -56,11 +58,12 @@
 		{:else}
 			<h1>List ended</h1>
 		{/if}
-		<Filter />
 	</header>
 	<hr>
+	<Filter bind:adhoc bind:adhocfiltered/>
+	<hr>
 	<div>
-		{#each adhoc as adhoc, i}
+		{#each adhocfiltered as adhoc, i}
 			<Post {adhoc} />
 		{/each}
 	</div>
