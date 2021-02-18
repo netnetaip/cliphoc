@@ -8,7 +8,8 @@
     let selected;
 
     // Filtering
-    $: adhocfiltered = adhoc.filter((tag) => tag.type === selected);
+    $: selected;
+    $: adhoc = adhoc.filter((tag) => tag.type === selected);
 
     // // Checkbox Filtering
     // $: subbyhubby = () => {

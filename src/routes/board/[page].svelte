@@ -59,15 +59,16 @@
 			<h1>List ended</h1>
 		{/if}
 	</header>
+	<h1>{adhocfiltered.length}</h1>
 	<hr>
 	<Filter bind:adhoc bind:adhocfiltered/>
 	<hr>
 	<div>
-		{#each adhocfiltered as adhoc, i}
+		{#each adhoc as adhoc, i}
 			<Post {adhoc} />
 		{/each}
 	</div>
-	{#if next && adhoc.length === limit}
+	{#if next && adhocfiltered.length === limit}
 		<a class="more" href={next}>Next page</a>
 	{/if}
 </section>
