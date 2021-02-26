@@ -59,9 +59,6 @@ strong, mark {
 dd, mark {
     color: var(--col-gray);
 }
-li {
-    color: var(--col-dark);
-}
 mark::before {
     content: "#";
 }

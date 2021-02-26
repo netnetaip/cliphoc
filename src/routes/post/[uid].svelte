@@ -62,8 +62,8 @@
 			<h2>Brief</h2>
 		</header>
 		<ul>
-			{#each adhoc.brief as item}
-				<li>{item}</li>
+			{#each adhoc.brief as list}
+				<li>{list}</li>
 			{/each}
 		</ul>
 	</section>
@@ -72,8 +72,8 @@
 			<h2>Requirements</h2>
 		</header>
 		<ul>
-			{#each adhoc.requirements as item}
-				<li>{item}</li>
+			{#each adhoc.requirements as list}
+				<li>{list}</li>
 			{/each}
 		</ul>
 	</section>

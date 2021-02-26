@@ -1,15 +1,17 @@
+<svelte:options immutable />
+
 <script>
     // Exports
     export let adhoc;
-    export let adhocfiltered = [];
+    export let adhocFiltered = [];
 
     // Props
     let labels = ["designer", "developer", "all"];
-    let selected;
+    let label;
+    let flavours = [];
 
     // Filtering
-    $: selected;
-    $: adhoc = adhoc.filter((tag) => tag.type === selected);
+    $: adhocFiltered = adhoc.filter((tag) => tag.type === label);
 
     // // Checkbox Filtering
     // $: subbyhubby = () => {
@@ -21,37 +23,44 @@
     // Check Local Storage
     $: (async () => {
         if (typeof window !== "undefined") {
-            if (sessionStorage.getItem("adhoc_type") === null) {
-                return selected = "designer";
+            if (!sessionStorage.getItem("adhoc_type")) {
+                return (flavours = "designer");
             } else {
-                return selected = sessionStorage.getItem("adhoc_type");
+                return (flavours = sessionStorage.getItem("adhoc_type"));
             }
         }
     })();
 
     // Mark Checkbox
     const markit = async () => {
-        if (!sessionStorage.getItem(selected)) {
-            return sessionStorage.setItem("adhoc_type", selected);
-        } else {
-            return sessionStorage.removeItem("adhoc_type", selected);
+        if (!sessionStorage.getItem(flavours)) {
+            return sessionStorage.setItem("Session_Key", flavours);
         }
     };
+
+    // DEVELOPMENT
+    $: console.log("Flavours", flavours);
 </script>
 
 <!-- HTML -->
 <form on:submit|preventDefault>
-    <select name="labels" id="labels" bind:value={selected} on:blur={markit}>
-        {#each labels as label}
-            <option value={label}>{label}</option>
-        {/each}
-    </select>
+    {#each labels as label}
+        <label for={label}>{label}</label>
+        <input
+            id={label}
+            name="checkbox"
+            type="checkbox"
+            value={label}
+            bind:group={flavours}
+            on:change={markit}
+        />
+    {/each}
 </form>
 
 <!-- CSS -->
 <style>
     form,
-    select {
+    label {
         /* Display */
         display: flex;
         flex-direction: column;
@@ -63,12 +72,12 @@
         max-width: 100%;
         width: 100%;
     }
-    select {
+    input {
         /* Appearance */
-        appearance: none;
+        /* appearance: none;
         -webkit-appearance: none;
         background: transparent;
-        border: none;
+        border: none; */
         /* Rest */
         text-transform: capitalize;
         padding: calc(var(--pt) * 2) calc(var(--pt) * 3);

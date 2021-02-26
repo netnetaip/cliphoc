@@ -1,4 +1,3 @@
-<!-- Server -->
 <svelte:options immutable />
 
 <!-- Server -->
@@ -23,11 +22,12 @@
 <!-- Client -->
 <script>
 	import { fly } from "svelte/transition";
+	// import AdhocStore from "../../stores/stores";
 	import Post from "./_post.svelte";
 	import Filter from "../../components/Filter.svelte";
 
 	// Exported
-	export let adhocfiltered = [];
+	export let adhocFiltered = [];
 	export let adhoc = [];
 	export let page;
 	export let limit;
@@ -41,7 +41,11 @@
 		"color:blue; font-weight:bold; font-size:14px",
 		adhoc
 	);
-	$: console.log(adhocfiltered);
+	// $: console.log(
+	// 	"%c BROWSE AdhocStore ",
+	// 	"color:green; font-weight:bold; font-size:14px",
+	// 	AdhocStore
+	// );
 </script>
 
 <!-- Special -->
@@ -59,16 +63,15 @@
 			<h1>List ended</h1>
 		{/if}
 	</header>
-	<h1>{adhocfiltered.length}</h1>
 	<hr>
-	<Filter bind:adhoc bind:adhocfiltered/>
+	<Filter bind:adhoc bind:adhocFiltered/>
 	<hr>
 	<div>
 		{#each adhoc as adhoc, i}
 			<Post {adhoc} />
 		{/each}
 	</div>
-	{#if next && adhocfiltered.length === limit}
+	{#if next && adhocFiltered.length === limit}
 		<a class="more" href={next}>Next page</a>
 	{/if}
 </section>
