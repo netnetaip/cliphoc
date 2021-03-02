@@ -57,17 +57,16 @@
 <section in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<header>
 		{#if adhoc.length > 0}
-			<h1>Board</h1>
-			<p>Here you can find posts by community. Scroll to search something. Bla, bla, bla.</p>
+			<h1>Job board</h1>
+			<p>Use filter for easier find</p>
 		{:else}
 			<h1>List ended</h1>
 		{/if}
 	</header>
-	<hr>
 	<Filter bind:adhoc bind:adhocFiltered/>
 	<hr>
 	<div>
-		{#each adhoc as adhoc, i}
+		{#each adhoc as adhoc}
 			<Post {adhoc} />
 		{/each}
 	</div>
@@ -127,7 +126,7 @@
 		max-width: 100%;
 		width: 100%;
 		/* Rest */
-		padding: calc(var(--pt) * 3) calc(var(--pt) * 3);
+		padding: calc(var(--pt) * 3);
 	}
 	a {
 		/* Display */
@@ -150,18 +149,5 @@
 	}
 	a:hover, a:active {
 		transform: scale3d(0.96, 0.96, 1);
-	}
-	svg {
-		/* Sizing */
-		min-height: calc(var(--pt) * 2);
-		max-height: calc(var(--pt) * 2);
-		height: calc(var(--pt) * 2);
-		min-width: calc(var(--pt) * 2);
-		max-width: calc(var(--pt) * 2);
-		width: calc(var(--pt) * 2);
-		/* Rest */
-		stroke: var(--col-black);
-		stroke-width: 2.5;
-		fill: none;
 	}
 </style>

@@ -5,18 +5,19 @@
 <!-- HTML -->
 <a href="post/{adhoc.id}">
 	<article>
-		<!-- {#if adhoc.type === "designer"}
-            <mark style="color: var(--col-tert)">{adhoc.type}</mark>
-        {:else}
-            <mark style="color: var(--col-seco)">{adhoc.type}</mark>
-        {/if} -->
-		<mark>{adhoc.type}</mark>
-		<h2>{adhoc.title}</h2>
+		<h2>
+			{adhoc.title}
+		</h2>
 		<dl>
 			<dt>{adhoc.author}</dt>
 			<dd>{adhoc.city}</dd>
 		</dl>
-		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
+		<strong>
+			{adhoc.amount}&euro;
+			{#if adhoc.hour}
+				an hour
+			{/if}
+		</strong>
 	</article>
 </a>
 <hr />
@@ -38,7 +39,7 @@
 		max-width: 100%;
 		width: 100%;
 		/* Rest */
-		padding: calc(var(--pt) * 3) calc(var(--pt) * 3);
+		padding: calc(var(--pt) * 3);
 	}
 	article {
 		/* Display */
@@ -67,6 +68,6 @@
 		width: 100%;
 	}
 	article > strong {
-		padding-top: var(--pt);
+		padding: calc(var(--pt) / 2) 0;
 	}
 </style>

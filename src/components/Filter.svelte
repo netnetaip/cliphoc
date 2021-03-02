@@ -6,9 +6,9 @@
     export let adhocFiltered = [];
 
     // Props
-    let labels = ["designer", "developer", "all"];
+    let labels = ["all", "coding", "design"];
     let label;
-    let flavours = [];
+    let ssnType = [];
 
     // Filtering
     $: adhocFiltered = adhoc.filter((tag) => tag.type === label);
@@ -23,43 +23,62 @@
     // Check Local Storage
     $: (async () => {
         if (typeof window !== "undefined") {
-            if (!sessionStorage.getItem("adhoc_type")) {
-                return (flavours = "designer");
+            if (!sessionStorage.getItem("ssnType")) {
+                return (ssnType = "all");
             } else {
-                return (flavours = sessionStorage.getItem("adhoc_type"));
+                return (ssnType = sessionStorage.getItem("ssnType"));
             }
         }
     })();
 
     // Mark Checkbox
     const markit = async () => {
-        if (!sessionStorage.getItem(flavours)) {
-            return sessionStorage.setItem("Session_Key", flavours);
+        if (!sessionStorage.getItem(ssnType)) {
+            return sessionStorage.setItem("ssnType", ssnType);
         }
     };
 
     // DEVELOPMENT
-    $: console.log("Flavours", flavours);
+    $: console.log("ssnType", ssnType);
 </script>
 
 <!-- HTML -->
 <form on:submit|preventDefault>
     {#each labels as label}
-        <label for={label}>{label}</label>
         <input
             id={label}
             name="checkbox"
-            type="checkbox"
+            type="radio"
             value={label}
-            bind:group={flavours}
+            bind:group={ssnType}
             on:change={markit}
         />
+        <label for={label}>
+            <svg><use xlink:href="/sprite.svg#{label}" /></svg>
+            {label}
+        </label>
     {/each}
 </form>
 
 <!-- CSS -->
 <style>
-    form,
+    form {
+        /* Display */
+        display: grid;
+        grid-auto-flow: column;
+        align-items: flex-start;
+        align-content: flex-start;
+        justify-content: space-between;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 0 calc(var(--pt) * 2);
+        /* Sizing */
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+        /* Rest */
+        padding: 0 calc(var(--pt) * 3) calc(var(--pt) * 2);
+        padding-top: 0;
+    }
     label {
         /* Display */
         display: flex;
@@ -68,18 +87,37 @@
         align-content: flex-start;
         justify-content: space-between;
         /* Sizing */
-        min-width: 100%;
-        max-width: 100%;
-        width: 100%;
+        min-height: calc(var(--pt) * 9.5);
+		max-height: calc(var(--pt) * 9.5);
+		height: 100%;
+        /* Rest */
+        background-color: var(--col-ghost);
+        padding: calc(var(--pt) * 2);
+        border-radius: calc(var(--pt) * 1.5);
+        color: var(--col-seco);
+        text-transform: capitalize;
     }
     input {
-        /* Appearance */
-        /* appearance: none;
-        -webkit-appearance: none;
-        background: transparent;
-        border: none; */
-        /* Rest */
-        text-transform: capitalize;
-        padding: calc(var(--pt) * 2) calc(var(--pt) * 3);
+        display: none;
     }
+    input:checked + label {
+        background: var(--col-seco);
+        color: var(--col-prime);
+    }
+    input:checked + label > svg {
+        stroke: var(--col-prime);
+    }
+    svg {
+		/* Sizing */
+		min-height: calc(var(--pt) * 2.5);
+		max-height: calc(var(--pt) * 2.5);
+		height: calc(var(--pt) * 2.5);
+		min-width: calc(var(--pt) * 2.5);
+		max-width: calc(var(--pt) * 2.5);
+		width: calc(var(--pt) * 2.5);
+		/* Rest */
+		stroke: var(--col-seco);
+		stroke-width: 2.5;
+		fill: none;
+	}
 </style>

@@ -9,4 +9,15 @@
     <symbol stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="right">
         <path d="M9 18l6-6-6-6"></path>
     </symbol>
+    <symbol stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="all">
+        <path d="M17 2.1l4 4-4 4"></path>
+        <path d="M3 12.2v-2a4 4 0 014-4h12.8M7 21.9l-4-4 4-4"></path>
+        <path d="M21 11.8v2a4 4 0 01-4 4H4.2"></path>
+    </symbol>
+    <symbol stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="coding">
+        <path d="M4 17l6-6-6-6m8 14h8"></path>
+    </symbol>
+    <symbol stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="design">
+        <path d="M6 3v7a6 6 0 006 6 6 6 0 006-6V3M4 21h16"></path>
+    </symbol>
 </svg>

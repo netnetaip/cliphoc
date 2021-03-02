@@ -41,14 +41,19 @@
 <div in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<section>
 		<header>
-			<mark>{adhoc.type}</mark>
+			<!-- <mark>{adhoc.type}</mark> -->
 			<h1>{adhoc.title}</h1>
 			<dl>
 				<dt>{adhoc.author}</dt>
 				<dd>{adhoc.city}</dd>
 			</dl>
 		</header>
-		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
+		<strong>
+			{adhoc.amount}&euro;
+			{#if adhoc.hour}
+				an hour
+			{/if}
+		</strong>
 	</section>
 	<!-- &nbsp;
 		<strong>{adhoc.amount} {adhoc.currency} / {adhoc.paytype}</strong>
@@ -93,11 +98,15 @@
 <style>
 	div, section {
 		/* Display */
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		align-content: center;
-		justify-content: flex-start;
+		display: grid;
+		align-items: start;
+		align-content: start;
+		justify-items: start;
+		justify-content: start;
+		grid-auto-flow: column;
+		grid-template-columns: 100%;
+		grid-template-rows: repeat(4, auto);
+		grid-column-gap: calc(var(--pt) / 2);
 		/* Sizing */
 		min-width: 100%;
 		max-width: 100%;
@@ -117,17 +126,20 @@
 		align-content: flex-start;
 		justify-content: flex-start;
 		/* Sizing */
-		min-width: 100%;
-		max-width: 100%;
-		width: 100%;
+		min-width: inherit;
+		max-width: inherit;
+		width: inherit;
 	}
-	ul, strong {
-		/* Sizing */
-		min-width: none;
-		max-width: 100%;
-		width: 100%;
+	strong {
+		margin-top: calc(var(--pt) * 2);
 		/* Rest */
-		padding: var(--pt) 0;
+		background-color: var(--col-ghost);
+		color: var(--col-seco);
+		padding: var(--pt) calc(var(--pt) * 2);
+		border-radius: var(--pt);
+	}
+	ul {
+		margin: var(--pt) 0;
 	}
 	li {
 		list-style-type: none;
