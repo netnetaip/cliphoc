@@ -2,7 +2,7 @@
 
 <!-- Server -->
 <script context="module">
-	export async function preload(page, session) {
+	export async function preload(page) {
 		// URL + ID
 		const { uid } = page.params;
 		const url = "https://6016e904f534300017a4509d.mockapi.io/board/" + uid;
@@ -14,7 +14,7 @@
 			return { adhoc };
 		}
 		// Error
-		this.error(500, "Problems with server. Be right back soon ;)");
+		this.error(404, "Post is no longer valid.");
 	}
 </script>
 

@@ -7,16 +7,21 @@
 
     // Props
     let labels = ["all", "coding", "design"];
-    let label;
-    let ssnType = [];
+    let ssnType;
 
     // Filtering
-    $: adhocFiltered = adhoc.filter((tag) => tag.type === label);
+    // $: adhocFiltered = adhoc.filter((tag) => tag.type === ssnType);
+
+    $: morbid = () => {
+        if(ssnType) {
+            adhocFiltered = adhoc.filter((tag) => tag.type === ssnType);
+        }
+    };
 
     // // Checkbox Filtering
-    // $: subbyhubby = () => {
-    //     return (checkgroup = adhoc.filter(({ type }) =>
-    //         adhoc.every((tag) => type.includes(tag))
+    // $: adhocFiltered = () => {
+    //     return (adhoc.filter(({ type }) =>
+    //         adhoc.every((tag) => type.includes(ssnType))
     //     ));
     // };
 
@@ -32,26 +37,35 @@
     })();
 
     // Mark Checkbox
-    const markit = async () => {
+    $: markit = async () => {
         if (!sessionStorage.getItem(ssnType)) {
             return sessionStorage.setItem("ssnType", ssnType);
         }
     };
 
     // DEVELOPMENT
-    $: console.log("ssnType", ssnType);
+    $: console.log(
+		"%c ssnType ",
+		"color:red; font-weight:bold; font-size:14px",
+		ssnType
+	);
+    $: console.log(
+		"%c adhocFiltered ",
+		"color:green; font-weight:bold; font-size:14px",
+		adhocFiltered
+	);
 </script>
 
 <!-- HTML -->
 <form on:submit|preventDefault>
     {#each labels as label}
         <input
-            id={label}
-            name="checkbox"
-            type="radio"
-            value={label}
-            bind:group={ssnType}
-            on:change={markit}
+            id={label} 
+            name="checkbox" 
+            type="radio" 
+            value={label} 
+            bind:group={ssnType} 
+            on:change={markit} 
         />
         <label for={label}>
             <svg><use xlink:href="/sprite.svg#{label}" /></svg>

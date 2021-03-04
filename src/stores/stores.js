@@ -1,11 +1,15 @@
-// import { writable } from 'svelte/store';
-// const store = writable([]);
-// const counterStore = {
-//     subscribe: store.subscribe,
-//     items: items => { store.set(items) }
-// }
-// export default counterStore;
+import { writable } from 'svelte/store'
 
+export function preload(url) {
+    const adhoc = writable(new Promise(() => {}));
 
-import { writable } from 'svelte/store';
-export const AdhocStore = writable([]);
+    // Fetch
+    const load = async () => {
+        const res = await this.fetch(url);
+        const data = await res.json();
+        adhoc.set(Promise.resolve(data));
+    }
+
+    load();
+    return adhoc;
+}

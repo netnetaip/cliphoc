@@ -15,19 +15,17 @@
 		}
 
 		// Error
-		this.error(500, "Problems with server. Be right back soon ;)");
+		this.error(500, "Problems with server. Be right back soon.");
 	}
 </script>
 
 <!-- Client -->
 <script>
 	import { fly } from "svelte/transition";
-	// import AdhocStore from "../../stores/stores";
 	import Post from "./_post.svelte";
 	import Filter from "../../components/Filter.svelte";
 
 	// Exported
-	export let adhocFiltered = [];
 	export let adhoc = [];
 	export let page;
 	export let limit;
@@ -63,14 +61,13 @@
 			<h1>List ended</h1>
 		{/if}
 	</header>
-	<Filter bind:adhoc bind:adhocFiltered/>
-	<hr>
+	<Filter bind:adhoc />
 	<div>
 		{#each adhoc as adhoc}
 			<Post {adhoc} />
 		{/each}
 	</div>
-	{#if next && adhocFiltered.length === limit}
+	{#if next && adhoc.length === limit}
 		<a class="more" href={next}>Next page</a>
 	{/if}
 </section>

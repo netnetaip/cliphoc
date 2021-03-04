@@ -21,7 +21,7 @@
     src: url("/font/Gilroy-SemiBold.woff");
 }
 
-h1, h2, dt, strong, p, a, dd, button, li, mark, label, address {
+h1, h2, dt, strong, p, a, dd, button, li, label, address {
     font-display: optional;
     font-style: normal;
     font-weight: normal;
@@ -33,7 +33,7 @@ h1, h2, dt, strong, p, a, dd, button, li, mark, label, address {
     line-height: 1.4;
 }
 /* Font Family */
-h1, h2, dt, strong, dd, a, button, label, mark {
+h1, h2, dt, strong, dd, a, button, label {
     font-family: gil-semi, Arial, Helvetica, sans-serif;
 }
 p, li, address {
@@ -49,18 +49,12 @@ h2 {
 dt, li, strong, button, p {
     font-size: clamp(0.95rem, 0.95rem, 0.95rem);
 }
-dd, strong, label, mark {
+dd, strong, label {
     font-size: clamp(0.85rem, 0.85rem, 0.85rem);
 }
 /* Font Specifics */
-dd, mark {
+dd {
     color: var(--col-gray);
-}
-mark::before {
-    content: "#";
-}
-mark {
-    background-color: transparent;
 }
 strong {
     letter-spacing: 0.04rem;
