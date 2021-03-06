@@ -2,16 +2,17 @@
 
 <!-- Server -->
 <script context="module">
+	import { stored } from "../../stores/stores";
+	// Fetch
 	export async function preload({ params }) {
 		const page = +params.page;
 		const limit = 50;
-		// Fetch
 		const res = await this.fetch(`https://6016e904f534300017a4509d.mockapi.io/board?page=${page}&limit=${limit}`)
 
 		// Validate
 		if (res.status === 200) {
-			const adhoc = await res.json();
-			return { adhoc, page, limit };
+			const query = await res.json();
+			return stored.set(query);
 		}
 
 		// Error
@@ -23,10 +24,9 @@
 <script>
 	import { fly } from "svelte/transition";
 	import Post from "./_post.svelte";
-	import Filter from "../../components/Filter.svelte";
+	// import Filter from "../../components/Filter.svelte";
 
 	// Exported
-	export let adhoc = [];
 	export let page;
 	export let limit;
 
@@ -35,15 +35,10 @@
 
 	// DEVELOPER_CONSOLE_LOG
 	$: console.log(
-		"%c BROWSE adhoc ",
+		"%c BROWSE Stored ",
 		"color:blue; font-weight:bold; font-size:14px",
-		adhoc
+		$stored
 	);
-	// $: console.log(
-	// 	"%c BROWSE AdhocStore ",
-	// 	"color:green; font-weight:bold; font-size:14px",
-	// 	AdhocStore
-	// );
 </script>
 
 <!-- Special -->
@@ -54,20 +49,20 @@
 <!-- HTML -->
 <section in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<header>
-		{#if adhoc.length > 0}
+		{#if $stored.length > 0}
 			<h1>Job board</h1>
 			<p>Use filter for easier find</p>
 		{:else}
 			<h1>List ended</h1>
 		{/if}
 	</header>
-	<Filter bind:adhoc />
+	<!-- <Filter /> -->
 	<div>
-		{#each adhoc as adhoc}
+		{#each $stored as adhoc}
 			<Post {adhoc} />
 		{/each}
 	</div>
-	{#if next && adhoc.length === limit}
+	{#if next && $stored.length === limit}
 		<a class="more" href={next}>Next page</a>
 	{/if}
 </section>

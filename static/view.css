@@ -108,3 +108,13 @@ button {
     background: none;
     outline: var(--col-primelight);
 }
+
+pre {
+    display: flex;
+    flex-direction: column;
+    /* Sizing */
+    min-width: none;
+    max-width: 90vw;
+    width: 100%;
+    white-space: pre-wrap;
+}

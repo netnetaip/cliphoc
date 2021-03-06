@@ -1,22 +1,13 @@
-<svelte:options immutable />
-
 <script>
-    // Exports
-    export let adhoc;
-    export let adhocFiltered = [];
-
     // Props
     let labels = ["all", "coding", "design"];
     let ssnType;
 
-    // Filtering
-    // $: adhocFiltered = adhoc.filter((tag) => tag.type === ssnType);
+    // 
+    // Better to use find as it stops array when found a match
+    // 
 
-    $: morbid = () => {
-        if(ssnType) {
-            adhocFiltered = adhoc.filter((tag) => tag.type === ssnType);
-        }
-    };
+    // $: adhocFiltered = adhoc.find((tag) => tag.type === ssnType);
 
     // // Checkbox Filtering
     // $: adhocFiltered = () => {
@@ -48,11 +39,6 @@
 		"%c ssnType ",
 		"color:red; font-weight:bold; font-size:14px",
 		ssnType
-	);
-    $: console.log(
-		"%c adhocFiltered ",
-		"color:green; font-weight:bold; font-size:14px",
-		adhocFiltered
 	);
 </script>
 

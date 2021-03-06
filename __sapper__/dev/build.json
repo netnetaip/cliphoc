@@ -2,20 +2,20 @@
   "bundler": "rollup",
   "shimport": "1.0.1",
   "assets": {
-    "main": "client.3b415c4a.js"
+    "main": "client.3b126799.js"
   },
   "dependencies": {
     "../client.js": [],
     "index.svelte": [
-      "client.3b415c4a.js"
+      "client.3b126799.js"
     ],
     "board/[page].svelte": [
-      "client.3b415c4a.js",
-      "index.ff7bd4a9.js"
+      "client.3b126799.js",
+      "index.1d211e9e.js"
     ],
     "post/[uid].svelte": [
-      "client.3b415c4a.js",
-      "index.ff7bd4a9.js"
+      "client.3b126799.js",
+      "index.1d211e9e.js"
     ],
     "../../node_modules/sapper/sapper-dev-client.js": []
   },
@@ -23,15 +23,15 @@
     "main": "main.2278602600.css",
     "chunks": {
       "index.svelte": [
-        "client.3b415c4a.css"
+        "client.3b126799.css"
       ],
       "board/[page].svelte": [
-        "[page].0695120e.css",
-        "client.3b415c4a.css"
+        "[page].3957f56d.css",
+        "client.3b126799.css"
       ],
       "post/[uid].svelte": [
-        "[uid].b5279fa1.css",
-        "client.3b415c4a.css"
+        "[uid].0fc10c26.css",
+        "client.3b126799.css"
       ]
     }
   }
