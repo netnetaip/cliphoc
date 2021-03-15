@@ -2,17 +2,16 @@
 
 <!-- Server -->
 <script context="module">
-	import { stored } from "../../stores/stores";
 	// Fetch
-	export async function preload(page) {
+	export async function preload( page ) {
 		const { uid } = page.params;
 		const url = "https://6016e904f534300017a4509d.mockapi.io/board/" + uid;
 		// Fetch
 		const res = await this.fetch(url);
 		// Validate
 		if (res.status === 200) {
-			const query = await res.json();
-			return stored.set(query);
+			const upid = await res.json();
+			return { upid }
 		}
 		// Error
 		this.error(404, "Post is no longer valid.");
@@ -21,6 +20,9 @@
 
 <script>
 	import { fly } from "svelte/transition";
+
+	// Exports
+	export let upid;
 
 	// Back
 	const historyback = () => {
@@ -32,31 +34,31 @@
 
 <!-- Special -->
 <svelte:head>
-	<title>{$stored.title}</title>
+	<title>{upid.title}</title>
 </svelte:head>
 
 <!-- HTML -->
 <div in:fly={{ duration: 320, y: 40, opacity: 1 }}>
 	<section>
 		<header>
-			<!-- <mark>{$stored.type}</mark> -->
-			<h1>{$stored.title}</h1>
+			<!-- <mark>{upid.type}</mark> -->
+			<h1>{upid.title}</h1>
 			<dl>
-				<dt>{$stored.author}</dt>
-				<dd>{$stored.city}</dd>
+				<dt>{upid.author}</dt>
+				<dd>{upid.city}</dd>
 			</dl>
 		</header>
 		<strong>
-			{$stored.amount}&euro;
-			{#if $stored.hour}
+			{upid.amount}&euro;
+			{#if upid.hour}
 				an hour
 			{/if}
 		</strong>
 	</section>
 	<!-- &nbsp;
-		<strong>{$stored.amount} {$stored.currency} / {$stored.paytype}</strong>
-		{#if $stored.currency === "USD"}
-			<a href="https://www.google.com/search?q={$stored.amount}+usd+to+eur" target="_blank" rel="noopener noreferrer">
+		<strong>{upid.amount} {upid.currency} / {upid.paytype}</strong>
+		{#if upid.currency === "USD"}
+			<a href="https://www.google.com/search?q={upid.amount}+usd+to+eur" target="_blank" rel="noopener noreferrer">
 				<svg><use xlink:href="/sprite.svg#plus"></use></svg>
 			</a>
 		{/if} -->
@@ -65,7 +67,7 @@
 			<h2>Brief</h2>
 		</header>
 		<ul>
-			{#each $stored.brief as list}
+			{#each upid.brief as list}
 				<li>{list}</li>
 			{/each}
 		</ul>
@@ -75,7 +77,7 @@
 			<h2>Requirements</h2>
 		</header>
 		<ul>
-			{#each $stored.requirements as list}
+			{#each upid.requirements as list}
 				<li>{list}</li>
 			{/each}
 		</ul>
@@ -83,11 +85,11 @@
 	<button type="button">Show contacts</button>
 </div>
 <!-- <address>
-	{$stored.email}
+	{upid.email}
 </address>
 <address>
-	{#if $stored.phone != null}
-		{$stored.phone}
+	{#if upid.phone != null}
+		{upid.phone}
 	{/if}
 </address> -->
 <!-- CTA's -->

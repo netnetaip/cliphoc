@@ -13,9 +13,10 @@
 			<dd>{adhoc.city}</dd>
 		</dl>
 		<strong>
-			{adhoc.amount}&euro;
 			{#if adhoc.hour}
-				an hour
+				{adhoc.amount}&euro;/h
+			{:else}
+				{adhoc.amount}&euro;
 			{/if}
 		</strong>
 	</article>
